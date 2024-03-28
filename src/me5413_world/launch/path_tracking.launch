@@ -1,0 +1,22 @@
+<launch>
+
+  <!-- Launch the ME5413 Path Publisher Node -->
+  <node ns="me5413_world" pkg="me5413_world" type="path_publisher_node" name="path_publisher_node" output="screen" />
+
+  <!-- Launch the ME5413 Path Publisher Node -->
+  <node ns="me5413_world" pkg="me5413_world" type="path_tracker_node" name="path_tracker_node" output="screen" />
+
+    <!-- <node name="cw_pure_pursuit" pkg="me5413_world" type="cw_pure_pursuit" output="screen" >
+        <rosparam file="$(find me5413_world)/cfg/pure_pursuit_params.yaml" command="load" />
+        <remap from="/pure_pursuit/odom" to="/odometry/filtered" />
+        <remap from="/pure_pursuit/global_planner" to="/me5413_world/planning/global_path" />
+        <remap from="/pure_pursuit/goal" to="/move_base_simple/goal" />
+        <remap from="/pure_pursuit/cmd_vel" to="/jackal_velocity_controller/cmd_vel" />
+    </node> -->
+
+  <!-- Launch Rviz with our settings -->
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find me5413_world)/rviz/navigation.rviz" output="log" respawn="true"/>
+
+  <!-- Dynamic Reconfigure GUI -->
+  <!-- <node name="rqt_reconfigure" pkg="rqt_reconfigure" type="rqt_reconfigure" output="screen" /> -->
+</launch>
